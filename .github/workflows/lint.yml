@@ -15,4 +15,4 @@ jobs:
       - name: Setup helm
         uses: azure/setup-helm@v1
 
-      - run: helm lint .
+      - run: helm lint charts/*
