@@ -2,11 +2,15 @@ apiVersion: v2
 name: hetzner-pvc
 description: Hetzner PVCs for kubernetes
 type: application
-version: 1.0.0
-appVersion: 1.0.0
+version: 1.0.1
+appVersion: 1.0.1
 maintainers:
   - name: Nazar Kulyk
     email: spam@myeburg.net
 keywords:
   - services
   - persistance
+  - k8s
+  - hcloud-volumes
+  - hcloud
+  - hetzner
