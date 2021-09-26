@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ printf "%s-%s" .Release.Namespace .Release.Name }}
+  labels:
+    {{- include "hetzner-pvc.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ default "ReadWriteOnce" .Values.accessMode }}
+  resources:
+    requests:
+      storage: {{ default "10Gi" .Values.size }}
+  volumeName: {{ printf "%s-%s" .Release.Name .Release.Namespace }}
