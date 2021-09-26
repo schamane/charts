@@ -16,6 +16,13 @@ helm lint charts/*
 helm repo add schamane-charts https://schamane.github.io/charts/
 ```
 
+or upgrade repo
+
+```bash
+helm repo update
+```
+
+
 ### hetzner-pvc
 
 Mount hetzner volume as pvc by id, use values.yaml with own configuration for volume
