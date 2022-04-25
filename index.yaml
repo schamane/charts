@@ -37,4 +37,28 @@ entries:
     urls:
     - https://schamane.github.io/charts/hetzner-pvc-1.0.0.tgz
     version: 1.0.0
-generated: "2021-09-26T11:14:39.484326081Z"
+  traefik:
+  - apiVersion: v2
+    appVersion: 2.6.3
+    created: "2022-04-25T16:12:52.14073236Z"
+    description: A Traefik based Kubernetes ingress controller
+    digest: 329d063a643af87c15349d2ee370dcebf9211fb0ccffbc6288f3aa02880ef9c1
+    home: https://traefik.io/
+    icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
+    keywords:
+    - services
+    - balancer
+    - traefik
+    - ingress
+    maintainers:
+    - email: schamane@myeburg.net
+      name: schamane
+    name: traefik
+    sources:
+    - https://github.com/traefik/traefik
+    - https://github.com/traefik/traefik-helm-chart
+    type: application
+    urls:
+    - https://github.com/schamane/charts/releases/download/traefik-1.1.1/traefik-1.1.1.tgz
+    version: 1.1.1
+generated: "2022-04-25T16:12:52.14074296Z"
