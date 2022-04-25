@@ -1,0 +1,20 @@
+apiVersion: v2
+name: traefik
+description: A Traefik based Kubernetes ingress controller
+
+type: application
+version: 1.1.1
+appVersion: 2.6.3
+home: https://traefik.io/
+icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
+sources:
+  - https://github.com/traefik/traefik
+  - https://github.com/traefik/traefik-helm-chart
+maintainers:
+  - name: schamane
+    email: schamane@myeburg.net
+keywords:
+  - services
+  - balancer
+  - traefik
+  - ingress

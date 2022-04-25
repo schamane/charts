@@ -1,0 +1,142 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: {{ include "traefik.fullname" . }}
+  labels:
+    {{- include "traefik.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      {{- include "traefik.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+    {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      labels:
+        {{- include "traefik.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.deployment.initContainers }}
+      initContainers:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "traefik.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      volumes:
+        - name: {{ .Values.persistence.name }}
+          {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ default (include "traefik.fullname" .) .Values.persistence.existingClaim }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+        - name: tmp
+          emptyDir: {}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            sysctls:
+              - name: "net.core.rmem_max"
+                value: "2500000"
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+          {{- if .Values.dashboard.enabled }}
+            - --api.dashboard
+          {{- end }}
+          {{- if .Values.debug.enabled }}
+            - --log.level=DEBUG
+          {{- end }}
+            - "--accesslog"
+            - "--ping=true"
+            - "--entrypoints.web.Address=:{{ .Values.service.ports.web }}"
+            - "--entrypoints.websecure.Address=:{{ .Values.service.ports.secureweb }}"
+            - "--entrypoints.traefik.Address=:{{ .Values.service.ports.traefik }}"
+            - "--providers.kubernetescrd"
+            - "--entryPoints.web.proxyProtocol.insecure"
+            - "--entryPoints.websecure.proxyProtocol.insecure"
+            - "--entryPoints.traefik.proxyProtocol.insecure"
+            - "--certificatesresolvers.myresolver.acme.tlschallenge"
+            - "--certificatesresolvers.myresolver.acme.email={{ .Values.acme.email }}"
+            - "--certificatesresolvers.myresolver.acme.storage={{ .Values.persistence.path }}/acme.json"
+            {{- if .Values.experimental.http3.enabled }}
+            - "--experimental.http3=true"
+            {{- end }}
+            {{- if .Values.experimental.http3.enabled }}
+            - "--entrypoints.websecure.http3.advertisedPort=443"
+            {{- end }}
+          ports:
+            - containerPort: {{ .Values.service.ports.web }}
+              name: http
+              protocol: TCP
+            - containerPort: {{ .Values.service.ports.secureweb }}
+              name: https
+              protocol: TCP
+            - containerPort: {{ .Values.service.ports.traefik }}
+              name: traefik
+              protocol: TCP
+          {{- with .Values.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            - name: {{ .Values.persistence.name }}
+              mountPath: {{ .Values.persistence.path }}
+              {{- if .Values.persistence.subPath }}
+              subPath: {{ .Values.persistence.subPath }}
+              {{- end }}
+            - name: tmp
+              mountPath: /tmp
+            {{- if .Values.experimental.plugins.enabled }}
+            - name: plugins
+              mountPath: "/plugins-storage"
+            {{- end }}
+          livenessProbe:
+            httpGet:
+              path: /ping
+              port: traefik
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 2
+          readinessProbe:
+            httpGet:
+              path: /ping
+              port: traefik
+            failureThreshold: 1
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 2
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- if .Values.onePodPerNode }}
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            {{- include "traefik.selectorLabels" . | nindent 12 }}
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

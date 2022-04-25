@@ -1,0 +1,33 @@
+{{- if .Values.persistence.enabled }}
+{{- if .Values.persistence.existingVolume -}}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: {{ template "traefik.fullname" . }}-acme
+    labels:
+      app: {{ template "traefik.fullname" . }}
+      chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+      release: "{{ .Release.Name }}"
+      heritage: "{{ .Release.Service }}"
+spec:
+    accessModes:
+        - {{ .Values.persistence.accessMode | quote }}
+    capacity:
+        storage: {{ .Values.persistence.size | quote }}
+{{- if .Values.persistence.volumeHandle }}
+    csi:
+        volumeHandle: "{{ .Values.persistence.volumeHandle }}"
+        driver: csi.hetzner.cloud
+        fsType: {{ default "ext4" .Values.persistence.fsType }}
+{{- end }}
+    nodeAffinity:
+        required:
+            nodeSelectorTerms:
+                - matchExpressions:
+                      - key: csi.hetzner.cloud/location
+                        operator: In
+                        values:
+                            - "{{ .Values.persistence.location }}"
+    storageClassName: {{ default "hcloud-volumes" .Values.persistence.storageClass }}
+{{- end }}
+{{- end -}}

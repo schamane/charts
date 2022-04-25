@@ -1,0 +1,21 @@
+{{- if .Values.service.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "traefik.fullname" . }}
+  labels:
+    {{- include "traefik.selectorLabels" . | nindent 4 }}
+spec:
+  ports:
+    - protocol: TCP
+      name: web
+      port: {{ .Values.service.ports.web }}
+    - protocol: TCP
+      name: traefik
+      port: {{ .Values.service.ports.traefik }}
+    - protocol: TCP
+      name: websecure
+      port: {{ .Values.service.ports.secureweb }}
+  selector:
+    {{- include "traefik.selectorLabels" . | nindent 4 }}
+{{- end }}

@@ -1,0 +1,86 @@
+# Default values for traefik.
+
+deployment:
+  replicas: 1
+
+image:
+  repository: traefik
+  tag: ""
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+
+securityContext:
+  capabilities:
+    drop: [ALL]
+  readOnlyRootFilesystem: true
+  runAsGroup: 65532
+  runAsNonRoot: true
+  runAsUser: 65532
+
+podSecurityContext:
+  fsGroup: 65532
+
+service:
+  enabled: false
+  ports:
+    web: 8000
+    secureweb: 8443
+    traefik: 9000
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+persistence:
+  name: data
+  #  existingClaim: ""
+  accessMode: ReadWriteOnce
+  enabled: false
+  size: 10Gi
+  path: /data
+  annotations: {}
+
+dashboard: {}
+# set host to route dashboard
+#   host: routes.example.net
+
+onePodPerNode: false
+
+debug:
+  enabled: false
+
+acme:
+  email: 'it@compulypse.net'
+
+# Enable experimental features
+experimental:
+  http3:
+    enabled: false
+  plugins:
+    enabled: false
+  kubernetesGateway:
+    enabled: false

@@ -1,0 +1,46 @@
+{{- if .Values.dashboard.enabled -}}
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ include "traefik.fullname" . }}
+  annotations:
+    helm.sh/hook: "post-install,post-upgrade"
+  labels:
+    {{- include "traefik.labels" . | nindent 4 }}
+spec:
+  entryPoints:
+    - traefik
+  routes:
+  - match: Host(`{{ .Values.dashboard.host }}`)
+    kind: Rule
+    services:
+    - name: api@internal
+      kind: TraefikService
+    {{- if .Values.dashboard.userDigest }}
+    middlewares:
+    - name: {{ include "traefik.fullname" . }}-dashboard-digest
+      namespace: {{ .Release.Namespace }}
+    {{- end }}
+  {{- if .Values.dashboard.tls.enabled }}
+  tls:
+    certResolver: {{ .Values.dashboard.tls.certResolver }}
+  {{- end }}
+{{- if .Values.dashboard.userDigest }}
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: {{ include "traefik.fullname" . }}-dashboard-digest
+spec:
+  digestAuth:
+    realm: {{ .Values.dashboard.realm }}
+    secret: {{ include "traefik.fullname" . }}-dashboard-authsecret
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ include "traefik.fullname" . }}-dashboard-authsecret
+data:
+  users: {{ template "traefik.digestSecret" . }}
+{{- end }}
+{{- end -}}
