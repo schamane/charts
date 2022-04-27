@@ -1,0 +1,19 @@
+apiVersion: v2
+name: openvscode-server
+description: Open vscode server for Kubernetes cluster
+
+type: application
+version: 1.0.0
+appVersion: 1.66.1
+home: https://www.gitpod.io
+sources:
+  - https://github.com/gitpod-io/openvscode-servercloud
+maintainers:
+  - name: schamane
+    email: schamane@myeburg.net
+keywords:
+  - services
+  - web editor
+  - vscode
+  - editor
+  - cloud
