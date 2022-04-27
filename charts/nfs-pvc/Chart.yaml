@@ -1,0 +1,14 @@
+apiVersion: v2
+name: nfs-pvc
+description: NFS mount PVCs for kubernetes
+type: application
+version: 1.0.0
+appVersion: 1.0.0
+maintainers:
+  - name: Nazar Kulyk
+    email: spam@myeburg.net
+keywords:
+  - services
+  - persistance
+  - k8s
+  - nfs

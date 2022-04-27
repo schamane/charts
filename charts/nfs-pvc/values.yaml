@@ -1,0 +1,8 @@
+# access mode for pvc. Default: ReadWriteMany
+accessMode:
+# storage size. Default: 10Gi
+size:
+# server host inside cluster. Example: nfs-server-service-name.namespace.svc.cluster.local
+server:
+# volume path to mount on nfs share folder. Default ''
+path:

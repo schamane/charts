@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ printf "%s-%s" .Release.Name .Release.Namespace }}
+  labels:
+    {{- include "nfs-pvc.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ default "ReadWriteMany" .Values.accessMode }}
+  capacity:
+    storage: {{ default "10Gi" .Values.size }}
+  storageClassName: {{ default "nfs" .Values.storageClass }}
+  nfs:
+    server: {{ default "missing-server-host-in-chart-values" .Values.server }}
+    path: {{ default "" .Values.path }}
