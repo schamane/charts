@@ -39,6 +39,8 @@ spec:
           {{- end }}
         - name: tmp
           emptyDir: {}
+        - name: cache
+          emptyDir: {}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -57,10 +59,11 @@ spec:
           {{- end }}
           volumeMounts:
             - name: {{ .Values.persistence.name }}
-              mountPath: "/home/workspace:cached"
+              mountPath: "/home/workspace"
             - name: tmp
               mountPath: /tmp
-
+            - name: cache
+              mountPath: /home/workspace:cached
           livenessProbe:
             httpGet:
               path: /
