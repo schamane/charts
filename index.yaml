@@ -56,6 +56,29 @@ entries:
     urls:
     - https://github.com/schamane/charts/releases/download/nfs-pvc-1.0.0/nfs-pvc-1.0.0.tgz
     version: 1.0.0
+  openvscode-server:
+  - apiVersion: v2
+    appVersion: 1.66.1
+    created: "2022-04-27T15:14:50.177900237Z"
+    description: Open vscode server for Kubernetes cluster
+    digest: 0d1fc71743d3afbfdff3dd4720e7626f89ef8b6d83ab03f58b2ae30fafec951a
+    home: https://www.gitpod.io
+    keywords:
+    - services
+    - web editor
+    - vscode
+    - editor
+    - cloud
+    maintainers:
+    - email: schamane@myeburg.net
+      name: schamane
+    name: openvscode-server
+    sources:
+    - https://github.com/gitpod-io/openvscode-servercloud
+    type: application
+    urls:
+    - https://github.com/schamane/charts/releases/download/openvscode-server-1.0.0/openvscode-server-1.0.0.tgz
+    version: 1.0.0
   traefik:
   - apiVersion: v2
     appVersion: 2.6.3
@@ -80,4 +103,4 @@ entries:
     urls:
     - https://github.com/schamane/charts/releases/download/traefik-1.1.1/traefik-1.1.1.tgz
     version: 1.1.1
-generated: "2022-04-27T14:38:41.958697935Z"
+generated: "2022-04-27T15:14:50.178111642Z"
