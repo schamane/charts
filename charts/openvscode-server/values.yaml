@@ -26,6 +26,7 @@ securityContext:
   runAsGroup: 65532
   runAsNonRoot: true
   runAsUser: 65532
+  allowPrivilegeEscalation: false
 
 podSecurityContext:
   fsGroup: 65532
