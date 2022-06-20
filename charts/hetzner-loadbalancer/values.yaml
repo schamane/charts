@@ -1,0 +1,21 @@
+# Default values for hetzner-loadbalancer.
+
+loadbalancer:
+  domain: example.com
+  id: 1
+  location: hel1
+  type: lb11
+  usePrivateIP: true
+  usesProxyProtocol: true
+  healthCheckPort: 8000
+  # disablePrivateIngress: false
+  # httpRedirectHttp: false
+
+ports:
+  - protocol: TCP
+    name: http
+    port: 80
+    targetPort: 80
+
+nodeSelector: {}
+  # app: example-app

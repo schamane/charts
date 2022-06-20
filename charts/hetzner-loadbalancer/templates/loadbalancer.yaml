@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "hetzner-loadbalancer.fullname" . }}-{{ .Values.loadbalancer.id }}
+  labels:
+    {{- include "hetzner-loadbalancer.selectorLabels" . | nindent 4 }}
+  annotations:
+    # https://pkg.go.dev/github.com/hetznercloud/hcloud-cloud-controller-manager/internal/annotation?tab=doc
+    load-balancer.hetzner.cloud/name: {{ .Values.loadbalancer.domain }}
+    load-balancer.hetzner.cloud/location: {{ .Values.loadbalancer.location }}
+    load-balancer.hetzner.cloud/type: {{ .Values.loadbalancer.type | quote }}
+    load-balancer.hetzner.cloud/use-private-ip: {{ .Values.loadbalancer.usePrivateIP | quote }}
+    load-balancer.hetzner.cloud/uses-proxyprotocol: {{ .Values.loadbalancer.usesProxyProtocol | quote }}
+{{- if .Values.loadbalancer.disablePrivateIngress }}
+    load-balancer.hetzner.cloud/disable-private-ingress: {{ .Values.loadbalancer.disablePrivateIngress | quote }}
+{{- end }}
+{{- if .Values.loadbalancer.httpRedirectHttp }}
+    load-balancer.hetzner.cloud/http-redirect-http: {{ .Values.loadbalancer.httpRedirectHttp | quote }}
+{{- end }}
+spec:
+{{- if .Values.nodeSelector }}
+  selector:
+    {{- toYaml .Values.nodeSelector | nindent 4 }}
+{{- end }}
+  ports:
+    {{- toYaml .Values.ports | nindent 4 }}
+  type: LoadBalancer
+  externalTrafficPolicy: "Local"

@@ -1,0 +1,14 @@
+apiVersion: v2
+name: hetzner-loadbalancer
+description: A Helm chart Loadbalancer setup for Hetzner
+
+type: application
+version: 1.0.3
+appVersion: 1.0.0
+maintainers:
+  - name: schamane
+    email: schamane@myeburg.net
+keywords:
+  - services
+  - balancer
+  - hetzner
