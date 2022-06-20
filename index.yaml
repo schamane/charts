@@ -58,6 +58,28 @@ entries:
     version: 1.0.0
   openvscode-server:
   - apiVersion: v2
+    appVersion: 1.68.1
+    created: "2022-06-20T17:59:36.64785286Z"
+    description: Open vscode server for Kubernetes cluster
+    digest: 0a96e1597e6d757520a48d471039e95d7a85dc354acab329c1f1c1df5798a628
+    home: https://www.gitpod.io
+    keywords:
+    - services
+    - web editor
+    - vscode
+    - editor
+    - cloud
+    maintainers:
+    - email: schamane@myeburg.net
+      name: schamane
+    name: openvscode-server
+    sources:
+    - https://github.com/gitpod-io/openvscode-servercloud
+    type: application
+    urls:
+    - https://github.com/schamane/charts/releases/download/openvscode-server-1.0.4/openvscode-server-1.0.4.tgz
+    version: 1.0.4
+  - apiVersion: v2
     appVersion: 1.68.0
     created: "2022-06-16T20:48:54.800303832Z"
     description: Open vscode server for Kubernetes cluster
@@ -215,4 +237,4 @@ entries:
     urls:
     - https://github.com/schamane/charts/releases/download/traefik-1.1.1/traefik-1.1.1.tgz
     version: 1.1.1
-generated: "2022-06-16T20:48:54.800325432Z"
+generated: "2022-06-20T17:59:36.648145265Z"
