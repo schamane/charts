@@ -1,0 +1,30 @@
+{{- if .Values.ingress.enabled -}}
+{{- if .Values.ingress.secureEntryPoints -}}
+{{- $fullName := include "whoami.fullname" . -}}
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ $fullName }}-tls
+  labels:
+    {{- include "whoami.labels" . | nindent 4 }}
+  {{- with .Values.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  entryPoints:
+    {{- range .Values.ingress.secureEntryPoints }}
+    - {{ . }}
+    {{- end }}
+  routes:
+  - match: {{ .Values.ingress.rule }}
+    kind: Rule
+    services:
+    - name: {{ $fullName }}
+      namespace: {{ .Release.Namespace }}
+      port: {{ .Values.service.port }}
+      passHostHeader: {{ .Values.ingress.passHostHeader }}
+  tls:
+    certResolver: {{ .Values.ingress.tls.certResolver }}
+{{- end -}}
+{{- end -}}
