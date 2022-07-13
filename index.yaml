@@ -55,6 +55,27 @@ entries:
     urls:
     - https://schamane.github.io/charts/hetzner-pvc-1.0.0.tgz
     version: 1.0.0
+  jaeger-all-in-one:
+  - apiVersion: v2
+    appVersion: 1.36.0
+    created: "2022-07-13T08:57:44.751955512Z"
+    description: Jaeger all-in-one helm chart for Kubernetes
+    digest: 3f8acc3780c5bd2c87b2d3a27d8b3d26909514dba6bd7905cf75b89850dc56e6
+    home: https://github.com/hansehe/jaeger-all-in-one
+    icon: https://raw.githubusercontent.com/hansehe/jaeger-all-in-one/master/helm/jaeger.png
+    keywords:
+    - jaeger
+    - jaeger-all-in-one
+    maintainers:
+    - email: hans.erik.heggem@gmail.com
+      name: hansehe
+    name: jaeger-all-in-one
+    sources:
+    - https://github.com/hansehe/jaeger-all-in-one
+    type: application
+    urls:
+    - https://github.com/schamane/charts/releases/download/jaeger-all-in-one-0.1.6/jaeger-all-in-one-0.1.6.tgz
+    version: 0.1.6
   nfs-pvc:
   - apiVersion: v2
     appVersion: 1.0.0
@@ -288,4 +309,4 @@ entries:
     urls:
     - https://github.com/schamane/charts/releases/download/whoami-0.2.0/whoami-0.2.0.tgz
     version: 0.2.0
-generated: "2022-07-13T08:18:52.67338305Z"
+generated: "2022-07-13T08:57:44.751981412Z"
