@@ -47,6 +47,7 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
+  name: http-ui
   type: ClusterIP
   port: 16686
   annotations:
@@ -62,6 +63,7 @@ ingress:
     # cert-manager.io/cluster-issuer: letsencrypt
     # nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     # nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+  className: ""
   hosts: []
     # - host: jaeger.localhost
     #   paths:
