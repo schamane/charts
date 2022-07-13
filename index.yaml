@@ -76,6 +76,28 @@ entries:
     version: 1.0.0
   openvscode-server:
   - apiVersion: v2
+    appVersion: 1.69.1
+    created: "2022-07-13T08:18:52.67333695Z"
+    description: Open vscode server for Kubernetes cluster
+    digest: af8812cd2a8dd0ab8496c8c7d36dc0890499eb7cf369f3b2943bfb14e7cd67ac
+    home: https://www.gitpod.io
+    keywords:
+    - services
+    - web editor
+    - vscode
+    - editor
+    - cloud
+    maintainers:
+    - email: schamane@myeburg.net
+      name: schamane
+    name: openvscode-server
+    sources:
+    - https://github.com/gitpod-io/openvscode-server
+    type: application
+    urls:
+    - https://github.com/schamane/charts/releases/download/openvscode-server-1.0.5/openvscode-server-1.0.5.tgz
+    version: 1.0.5
+  - apiVersion: v2
     appVersion: 1.68.1
     created: "2022-06-20T17:59:36.64785286Z"
     description: Open vscode server for Kubernetes cluster
@@ -266,4 +288,4 @@ entries:
     urls:
     - https://github.com/schamane/charts/releases/download/whoami-0.2.0/whoami-0.2.0.tgz
     version: 0.2.0
-generated: "2022-06-20T18:06:12.111511602Z"
+generated: "2022-07-13T08:18:52.67338305Z"
