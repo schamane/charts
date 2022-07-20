@@ -1,0 +1,20 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ include "traefik-ingress.fullname" . }}-https-redirect
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "traefik-ingress.labels" . | nindent 4 }}
+spec:
+  entryPoints:
+    - web
+  routes:
+  - match: {{ .Values.rule }}
+    kind: Rule
+    services:
+    - name: {{ .Values.service.name }}
+      namespace: {{ default .Release.Namespace .Values.service.namespace }}
+      port: {{ default 80 .Values.service.port }}
+    middlewares:
+    - name: redirect-to-https-traefik-middleware
+      namespace: {{ .Values.middlewarenamespace | default .Release.Namespace }}

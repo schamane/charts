@@ -1,0 +1,9 @@
+entryPoints:
+  - websecure
+rule: "Host('example.com')"
+certResolver: 'myresolver'
+service:
+  name:
+  port:
+  namespace:
+middlewarenamespace:

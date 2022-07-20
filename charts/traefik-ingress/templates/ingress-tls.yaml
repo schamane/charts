@@ -1,0 +1,22 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ include "traefik-ingress.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "traefik-ingress.labels" . | nindent 4 }}
+spec:
+  entryPoints:
+    {{- range .Values.entryPoints }}
+    - {{ . }}
+    {{- end }}
+  routes:
+  - match: {{ .Values.rule }}
+    kind: Rule
+    services:
+    - name: {{ .Values.service.name }}
+      namespace: {{ default .Release.Namespace .Values.service.namespace }}
+      port: {{ default 80 .Values.service.port }}
+      passHostHeader: {{ default true .Values.passHostHeader }}
+  tls:
+    certResolver: {{ .Values.certResolver }}
