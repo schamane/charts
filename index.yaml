@@ -58,6 +58,26 @@ entries:
   jaeger-all-in-one:
   - apiVersion: v2
     appVersion: 1.36.0
+    created: "2022-07-20T09:28:35.723120211Z"
+    description: Jaeger all-in-one helm chart for Kubernetes
+    digest: aa9672bd82cf9b2060239dbf5f74c013706f93e8ac20a4f8d1d80e41d1c2c1ca
+    home: https://github.com/hansehe/jaeger-all-in-one
+    icon: https://raw.githubusercontent.com/hansehe/jaeger-all-in-one/master/helm/jaeger.png
+    keywords:
+    - jaeger
+    - jaeger-all-in-one
+    maintainers:
+    - email: hans.erik.heggem@gmail.com
+      name: hansehe
+    name: jaeger-all-in-one
+    sources:
+    - https://github.com/hansehe/jaeger-all-in-one
+    type: application
+    urls:
+    - https://github.com/schamane/charts/releases/download/jaeger-all-in-one-0.1.8/jaeger-all-in-one-0.1.8.tgz
+    version: 0.1.8
+  - apiVersion: v2
+    appVersion: 1.36.0
     created: "2022-07-13T09:02:39.834663859Z"
     description: Jaeger all-in-one helm chart for Kubernetes
     digest: 47e9cb1c47e55625d195ce11b710647001c4e6794c5b588277d1789ea53ce1c9
@@ -250,6 +270,29 @@ entries:
     version: 1.0.0
   traefik:
   - apiVersion: v2
+    appVersion: 2.8.1
+    created: "2022-07-20T09:28:35.858880498Z"
+    description: A Traefik based Kubernetes ingress controller
+    digest: cda11ffb741d3a0182be54478a93df9366b94ce9cfc164159c3ba7cf3edcee0e
+    home: https://traefik.io/
+    icon: https://raw.githubusercontent.com/traefik/traefik/v2.7/docs/content/assets/img/traefik.logo.png
+    keywords:
+    - services
+    - balancer
+    - traefik
+    - ingress
+    maintainers:
+    - email: schamane@myeburg.net
+      name: schamane
+    name: traefik
+    sources:
+    - https://github.com/traefik/traefik
+    - https://github.com/traefik/traefik-helm-chart
+    type: application
+    urls:
+    - https://github.com/schamane/charts/releases/download/traefik-1.1.4/traefik-1.1.4.tgz
+    version: 1.1.4
+  - apiVersion: v2
     appVersion: 2.7.1
     created: "2022-06-16T18:37:02.416112495Z"
     description: A Traefik based Kubernetes ingress controller
@@ -329,4 +372,4 @@ entries:
     urls:
     - https://github.com/schamane/charts/releases/download/whoami-0.2.0/whoami-0.2.0.tgz
     version: 0.2.0
-generated: "2022-07-13T09:02:39.834783959Z"
+generated: "2022-07-20T09:28:35.858916999Z"
