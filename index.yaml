@@ -386,6 +386,23 @@ entries:
   traefik-ingress:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2022-07-20T14:42:19.419296676Z"
+    description: ingress routes configs for traefik
+    digest: 1f9768a68c7a67dc63354fdb8feebf18146cd8e0c56a3ffe3390bd861364dfc4
+    keywords:
+    - traefik
+    - ingress
+    - routes
+    maintainers:
+    - email: spam@myeburg.net
+      name: Nazar Kulyk
+    name: traefik-ingress
+    type: application
+    urls:
+    - https://github.com/schamane/charts/releases/download/traefik-ingress-1.0.1/traefik-ingress-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2022-07-20T14:32:19.03520746Z"
     description: ingress routes configs for traefik
     digest: 6b0ce6bcd557d5e03ead68a341153175faed2b3c30e08625339626938bfd11e5
@@ -412,4 +429,4 @@ entries:
     urls:
     - https://github.com/schamane/charts/releases/download/whoami-0.2.0/whoami-0.2.0.tgz
     version: 0.2.0
-generated: "2022-07-20T14:32:19.035256461Z"
+generated: "2022-07-20T14:42:19.419331879Z"
