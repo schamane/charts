@@ -1,0 +1,13 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: {{ include "traefik-ingress.fullname" . }}-https-redirect
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "traefik-ingress.labels" . | nindent 4 }}
+spec:
+  redirectScheme:
+    scheme: https
+    {{- if .Values.permanent }}
+    permanent: {{ .Values.permanent}}
+    {{- end }}

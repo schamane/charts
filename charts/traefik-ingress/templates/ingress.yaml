@@ -16,5 +16,5 @@ spec:
       namespace: {{ default .Release.Namespace .Values.service.namespace }}
       port: {{ default 80 .Values.service.port }}
     middlewares:
-    - name: redirect-to-https-traefik-middleware
+    - name: {{ include "traefik-ingress.fullname" . }}-https-redirect
       namespace: {{ .Values.middlewarenamespace | default .Release.Namespace }}
