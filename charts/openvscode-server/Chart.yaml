@@ -3,8 +3,8 @@ name: openvscode-server
 description: Open vscode server for Kubernetes cluster
 
 type: application
-version: 1.0.5
-appVersion: 1.69.1
+version: 1.0.6
+appVersion: 1.69.2
 home: https://www.gitpod.io
 sources:
   - https://github.com/gitpod-io/openvscode-server
