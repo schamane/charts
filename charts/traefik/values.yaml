@@ -75,6 +75,10 @@ debug:
 
 acme:
   email: 'it@compulypse.net'
+  # test challenge with stagin letsencrypt server
+  staging: false
+  # challenge methods: httpChallenge | tlschallenge | dnsChallenge
+  challenge: tlschallenge
 
 # Enable experimental features
 experimental:

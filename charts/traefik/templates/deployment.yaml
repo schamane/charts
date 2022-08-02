@@ -64,9 +64,12 @@ spec:
             - "--entryPoints.web.proxyProtocol.insecure"
             - "--entryPoints.websecure.proxyProtocol.insecure"
             - "--entryPoints.traefik.proxyProtocol.insecure"
-            - "--certificatesresolvers.myresolver.acme.tlschallenge"
+            - "--certificatesresolvers.myresolver.acme.{{ .Values.acme.challenge }}"
             - "--certificatesresolvers.myresolver.acme.email={{ .Values.acme.email }}"
             - "--certificatesresolvers.myresolver.acme.storage={{ .Values.persistence.path }}/acme.json"
+            {{- if .Values.acme.staging }}
+            - "--certificatesresolvers.myresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
+            {{- end }}
             {{- if .Values.experimental.http3.enabled }}
             - "--experimental.http3=true"
             {{- end }}
