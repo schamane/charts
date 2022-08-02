@@ -60,7 +60,12 @@ spec:
             - "--entrypoints.web.Address=:{{ .Values.service.ports.web }}"
             - "--entrypoints.websecure.Address=:{{ .Values.service.ports.secureweb }}"
             - "--entrypoints.traefik.Address=:{{ .Values.service.ports.traefik }}"
+            {{- if .Values.providers.kubernetescrd.enabled }}
             - "--providers.kubernetescrd"
+            {{- end }}
+            {{- if .Values.providers.kubernetesingress.enabled }}
+            - "--providers.kubernetesingress"
+            {{- end }}
             - "--entryPoints.web.proxyProtocol.insecure"
             - "--entryPoints.websecure.proxyProtocol.insecure"
             - "--entryPoints.traefik.proxyProtocol.insecure"

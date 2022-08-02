@@ -73,6 +73,12 @@ onePodPerNode: false
 debug:
   enabled: false
 
+providers:
+  kubernetescrd:
+    enabled: true
+  kubernetesingress:
+    enabled: false
+
 acme:
   email: 'it@compulypse.net'
   # test challenge with stagin letsencrypt server
