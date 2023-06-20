@@ -3,10 +3,10 @@ name: traefik
 description: A Traefik based Kubernetes ingress controller
 
 type: application
-version: 1.1.9
-appVersion: 2.8.8
+version: 1.2.0
+appVersion: 2.10.1
 home: https://traefik.io/
-icon: https://raw.githubusercontent.com/traefik/traefik/v2.7/docs/content/assets/img/traefik.logo.png
+icon: https://raw.githubusercontent.com/traefik/traefik/v2.10/docs/content/assets/img/traefik.logo.png
 sources:
   - https://github.com/traefik/traefik
   - https://github.com/traefik/traefik-helm-chart
