@@ -33,7 +33,7 @@ spec:
         - name: {{ .Values.persistence.name }}
           {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:
-            claimName: {{ default (include "traefik.fullname" | join("-acme-pvc") .) .Values.persistence.existingClaim }}
+            claimName: {{ default (include "traefik.pvcname" .) .Values.persistence.existingClaim }}
           {{- else }}
           emptyDir: {}
           {{- end }}

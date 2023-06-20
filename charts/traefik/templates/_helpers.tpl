@@ -70,3 +70,10 @@ Create digest secret
 |2
 {{- join "\n" .Values.dashboard.userDigest | b64enc | nindent 4 }}
 {{- end -}}
+
+{{/*
+Expand the pvc default name for the chart.
+*/}}
+{{- define "traefik.pvcname" -}}
+{{- default (include "traefik.fullname" .)-acme-pvc }}
+{{- end }}
