@@ -336,6 +336,29 @@ entries:
     version: 1.0.0
   traefik:
   - apiVersion: v2
+    appVersion: 2.8.8
+    created: "2023-06-20T09:19:15.443290255Z"
+    description: A Traefik based Kubernetes ingress controller
+    digest: 4c162fdd649c5708a8972a3a3c7753f6a7bc4462a167b4cd59d269e309059fe4
+    home: https://traefik.io/
+    icon: https://raw.githubusercontent.com/traefik/traefik/v2.7/docs/content/assets/img/traefik.logo.png
+    keywords:
+    - services
+    - balancer
+    - traefik
+    - ingress
+    maintainers:
+    - email: schamane@myeburg.net
+      name: schamane
+    name: traefik
+    sources:
+    - https://github.com/traefik/traefik
+    - https://github.com/traefik/traefik-helm-chart
+    type: application
+    urls:
+    - https://github.com/schamane/charts/releases/download/traefik-1.1.7/traefik-1.1.7.tgz
+    version: 1.1.7
+  - apiVersion: v2
     appVersion: 2.8.1
     created: "2022-08-02T15:27:05.201426085Z"
     description: A Traefik based Kubernetes ingress controller
@@ -519,4 +542,4 @@ entries:
     urls:
     - https://github.com/schamane/charts/releases/download/whoami-0.2.0/whoami-0.2.0.tgz
     version: 0.2.0
-generated: "2022-11-16T08:43:17.309583692Z"
+generated: "2023-06-20T09:19:15.443369255Z"
