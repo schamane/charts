@@ -75,5 +75,5 @@ Create digest secret
 Expand the pvc default name for the chart.
 */}}
 {{- define "traefik.pvcname" -}}
-{{- default (include "traefik.fullname" .)-acme-pvc }}
+{{- default (include "traefik.fullname" .) }}-acme-pvc
 {{- end }}
